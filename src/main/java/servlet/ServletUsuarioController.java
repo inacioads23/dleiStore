@@ -52,7 +52,8 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				request.setAttribute("msg", "Registro excluído com sucesso!");								
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 
-			}			
+			}
+			//gera a table do modal
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) {
 				String nomeBusca = request.getParameter("nomeBusca");
 				System.out.println(nomeBusca);
@@ -95,6 +96,15 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			
 			// Relatório
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
+				
+				request.setAttribute("listaUser", daoUsuario.consultaUsuarioListReport());
+				
+				
+				request.getRequestDispatcher("principal/rel-user.jsp").forward(request, response);
+			}
+			
+			/*
+			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
 				String dataInicial = request.getParameter("dataInicial");
 				String dataFinal = request.getParameter("dataFinal");
 				
@@ -105,6 +115,13 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				request.setAttribute("dataInicial", dataInicial);
 				request.setAttribute("dataFinal", dataFinal);
 				request.getRequestDispatcher("principal/rel-user.jsp").forward(request, response);
+			}
+			*/
+			
+			// Chama Query
+			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("queryUser")) {
+			    // Ajustar redirecionamento para a página JSP
+			    request.getRequestDispatcher("principal/query-user.jsp").forward(request, response);
 			}
 			
 			else {

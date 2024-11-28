@@ -34,28 +34,9 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-block">
-														<h4 class="sub-title">Relatório de usuário</h4>
+														<h3>Relatório de Usuário</h3>
 
-														<form
-															action="<%=request.getContextPath()%>/ServletUsuarioController"
-															method="get" id="formUser">
-															<input type="hidden" name="acao" value="imprimirRelatorioUser">
-															
-															<div class="form-row align-items-center">
-																<div class="col-auto">
-																	<label class="sr-only" for="dataInicial">Data Inicial</label>
-																	<input value="${dataInicial}" type="text" class="form-control mb-2" id="dataInicial" name="dataInicial">
-																</div>
-																<div class="col-auto">
-																	<label class="sr-only" for="dataFinal">Data	Final</label>
-																	<input value="${dataFinal}" type="text" class="form-control mb-2" id="dataFinal" name="dataFinal">
-																</div>
-																<div class="col-auto">
-																	<button type="submit" class="btn btn-primary mb-2">Imprimir Relatório</button>
-																</div>
-															</div>
-														</form>
-														
+																												
 														<div style="height: 300px; overflow: scroll;">										
 															<table class="table" id="tabelaResultadosView">
 																<thead>
@@ -63,8 +44,12 @@
 																		<th scope="col">ID</th>
 																		<th scope="col">Nome</th>
 																		<th scope="col">E-mail</th>
-																		<th scope="col">CPF</th>
 																		<th scope="col">Telefone</th>
+																		<th scope="col">CEP</th>
+																		<th scope="col">Rua</th>
+																		<th scope="col">Bairro</th>
+																		<th scope="col">Cidade</th>
+																		<th scope="col">Estado</th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -73,8 +58,12 @@
 																	<td><c:out value="${ml.id}"> </c:out></td>
 																	<td><c:out value="${ml.nome}"> </c:out></td>
 																	<td><c:out value="${ml.email}"> </c:out></td>
-																	<td><c:out value="${ml.cpf}"> </c:out></td>
 																	<td><c:out value="${ml.telefone}"> </c:out></td>
+																	<td><c:out value="${ml.cep}"> </c:out></td>
+																	<td><c:out value="${ml.logradouro}"> </c:out></td>
+																	<td><c:out value="${ml.bairro}"> </c:out></td>
+																	<td><c:out value="${ml.localidade}"> </c:out></td>
+																	<td><c:out value="${ml.uf}"> </c:out></td>
 																	</tr>
 																</c:forEach>			
 																</tbody>

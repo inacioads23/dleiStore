@@ -5,17 +5,17 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a href="<%= request.getContextPath() %>"> <img class="img-fluid" src="<%= request.getContextPath() %>/assets/images/logo.png"
+    <a href="${pageContext.request.contextPath}"> <img class="img-fluid" src="${pageContext.request.contextPath}/assets/images/logo.png"
 				alt="Logo" /></a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= request.getContextPath() %>">Home <span class="sr-only">(Página atual)</span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}">Home <span class="sr-only">(Página atual)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= request.getContextPath() %>/orcamento.jsp">Orçamento</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/orcamento.jsp">Orçamento</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= request.getContextPath() %>/login.jsp">Área Exclusiva</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp" target="_blank">Área Exclusiva</a>
       </li>
     </ul>
   </div>

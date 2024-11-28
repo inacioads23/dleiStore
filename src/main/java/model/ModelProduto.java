@@ -3,70 +3,85 @@ package model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class ModelProduto implements Serializable{
+public class ModelProduto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private Long idProduto;
+
+	private Long id;
 	private String categoria;
 	private String produto;
 	private String tipo;
-	private BigDecimal vlCompra;
-	private float icms;
-	private BigDecimal vlVenda;
-	
+	private BigDecimal vlcompra;
+	private BigDecimal icms;
+	private BigDecimal vlvenda;
+
 	// Método para verificar "id"
 	public boolean isNovo() {
 		// Se "id" for null/ não tiver valor
-		if(this.idProduto == null) {
+		if (this.id == null) {
 			return true;// Inserir novo
-			// Se "id" não for nulo e o valor for maior que "0" 
-		}else if(this.idProduto != null  && this.idProduto > 0) {
+			// Se "id" não for nulo e o valor for maior que "0"
+		} else if (this.id != null && this.id > 0) {
 			return false;// Atualizar
 		}
-		return idProduto == null;
+		return id == null;
 	}
-	
-	public Long getIdProduto() {
-		return idProduto;
+
+	public Long getId() {
+		return id;
 	}
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
+
 	public String getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
 	public String getProduto() {
 		return produto;
 	}
+
 	public void setProduto(String produto) {
 		this.produto = produto;
 	}
+
 	public String getTipo() {
 		return tipo;
 	}
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public BigDecimal getVlCompra() {
-		return vlCompra;
+
+	public BigDecimal getVlcompra() {
+		return vlcompra;
 	}
-	public void setVlCompra(BigDecimal vlCompra) {
-		this.vlCompra = vlCompra;
+
+	public void setVlcompra(BigDecimal vlcompra) {
+		this.vlcompra = vlcompra;
 	}
-	public float getIcms() {
+
+	public BigDecimal getIcms() {
 		return icms;
 	}
-	public void setIcms(float icms) {
+
+	public void setIcms(BigDecimal icms) {
 		this.icms = icms;
 	}
-	public BigDecimal getVlVenda() {
-		return vlVenda;
+
+	public BigDecimal getVlvenda() {
+		return vlvenda;
 	}
-	public void setVlVenda(BigDecimal vlVenda) {
-		this.vlVenda = vlVenda;
-	}	
+
+	public void setVlvenda(BigDecimal vlvenda) {
+		this.vlvenda = vlvenda;
+	}
+
+	
 }

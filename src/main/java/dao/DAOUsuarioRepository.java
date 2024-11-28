@@ -118,7 +118,7 @@ public class DAOUsuarioRepository {
 
 	//paginação - implantação futura	
 
-	// Relatorio
+	// Relatorio com data
 	public List<ModelLogin> consultaUsuarioList(Long userLogado) throws SQLException {
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		// Query não lista o Admin.
@@ -136,6 +136,38 @@ public class DAOUsuarioRepository {
 			modelLogin.setLogin(resultSet.getString("login"));
 			modelLogin.setTelefone(resultSet.getString("telefone"));
 			modelLogin.setCpf(resultSet.getString("cpf"));
+
+			retorno.add(modelLogin);
+		}
+
+		return retorno;
+	}
+	
+	//Relatório - menu Relatório
+	public List<ModelLogin> consultaUsuarioListReport() throws SQLException {
+		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
+		// Query não lista o Admin.
+		String sql = "SELECT * FROM model_login WHERE useradmin IS false ORDER BY nome;";
+		statement = connection.prepareStatement(sql);
+
+		resultSet = statement.executeQuery();
+
+		while (resultSet.next()) {// Se tem resultado
+			ModelLogin modelLogin = new ModelLogin();
+
+			modelLogin.setId(resultSet.getLong("id"));
+			modelLogin.setNome(resultSet.getString("nome"));
+			modelLogin.setEmail(resultSet.getString("email"));
+			modelLogin.setLogin(resultSet.getString("login"));
+			modelLogin.setTelefone(resultSet.getString("telefone"));
+			modelLogin.setCpf(resultSet.getString("cpf"));
+			modelLogin.setCep(resultSet.getString("cep"));
+			modelLogin.setLogradouro(resultSet.getString("logradouro"));
+			modelLogin.setNumero(resultSet.getString("numero"));
+			modelLogin.setComplemento(resultSet.getString("complemento"));
+			modelLogin.setBairro(resultSet.getString("bairro"));
+			modelLogin.setLocalidade(resultSet.getString("localidade"));
+			modelLogin.setUf(resultSet.getString("uf"));
 
 			retorno.add(modelLogin);
 		}

@@ -42,41 +42,45 @@ CREATE TABLE model_login
 )
 
 
+/* gera auto-incremet*/
+CREATE SEQUENCE orcamento_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
 CREATE TABLE orcamento
 (
-    id integer PRIMARY KEY NOT NULL,
+    id integer PRIMARY KEY NOT NULL DEFAULT nextval('orcamento_id_seq'::regclass),
     nome character varying(200) NOT NULL,
-    email character varying(150) UNIQUE NOT NULL,    
+    email character varying(150) NOT NULL,    
     telefone character varying(15),
-    orcamento text,
-    CONSTRAINT model_login_pkey PRIMARY KEY (id),
-    CONSTRAINT model_login_login_key UNIQUE (email)
+    orcamento text
 )
 
 CREATE TABLE produto
 (
-    idproduto integer PRIMARY KEY NOT NULL,
+	id integer PRIMARY KEY NOT NULL DEFAULT nextval('produto_id_seq'::regclass),
     categoria character varying(20) NOT NULL,
     produto character varying(200) UNIQUE NOT NULL,
-    tipo character varying(20) UNIQUE NOT NULL,    
+    tipo character varying(20) NOT NULL,    
     vlcompra numeric(10,2),
-    icms float,
+    icms numeric(4,2),
     vlvenda numeric(10,2)
 );
 
 CREATE TABLE estoque
 (
-    idestoque integer PRIMARY KEY NOT NULL,
+    id integer PRIMARY KEY NOT NULL DEFAULT nextval('estoque_id_seq'::regclass),
     idproduto integer NOT NULL,
-	iduser bigint NOT NULL,
+	iduser integer NOT NULL,
     quantidade integer NOT NULL,
     datamovimentacao date NOT NULL,
-    tipomovimentacao character varying(10) NOT NULL, -- por exemplo, 'entrada' ou 'saída'
-    FOREIGN KEY (idproduto) REFERENCES produto (idproduto)
-	
-	FOREIGN KEY (iduser) REFERENCES model_login (id)
-	
-	ou 
+    tipomovimentacao character varying(10) NOT NULL,
+    FOREIGN KEY (idproduto) REFERENCES produto (id),	
+	FOREIGN KEY (iduser) REFERENCES model_login (id)	
+);
+
+ou 
 	ALTER TABLE estoque
     ADD CONSTRAINT estoque_fk FOREIGN KEY (iduser) REFERENCES model_login (id)
-);

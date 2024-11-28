@@ -18,7 +18,7 @@
 	content="Projeto de PI - 2º Semestre de 2024" />
 <meta name="author" content="Inácio, Lucas, Davi, Elivelton" />
 <!-- Favicon icon -->
-<link rel="icon" href="<%= request.getContextPath() %>/assets/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico" type="image/x-icon">
 <!-- Google font-->
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500"
 	rel="stylesheet">
@@ -26,21 +26,21 @@
 	
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css"
-	href="<%= request.getContextPath() %>/assets/css/bootstrap/css/bootstrap.min.css">	
+	href="${pageContext.request.contextPath}/assets/css/bootstrap/css/bootstrap.min.css">	
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
-	href="<%= request.getContextPath() %>/assets/icon/themify-icons/themify-icons.css">
+	href="${pageContext.request.contextPath}/assets/icon/themify-icons/themify-icons.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" type="text/css"
-	href="<%= request.getContextPath() %>/assets/icon/font-awesome/css/font-awesome.min.css">
+	href="${pageContext.request.contextPath}/assets/icon/font-awesome/css/font-awesome.min.css">
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css"
-	href="<%= request.getContextPath() %>/assets/css/jquery.mCustomScrollbar.css">
+	href="${pageContext.request.contextPath}/assets/css/jquery.mCustomScrollbar.css">
 
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/myCss/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/myCss/style.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/myCss/form-and-query.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/myCss/form-and-query.css">
 </head>

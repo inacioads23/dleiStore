@@ -53,16 +53,19 @@
 											</div>
 											
 											<div class="row mb-3 input-group">
+										    
 										    <div class="col-sm-1 input-group-prepend">
-										        <!-- Se já tiver imagem -->
-										        <c:if test="${modelLogin.fotouser != '' && modelLogin.fotouser != null}">
-										            <img class="imagemUser" alt="Imagem User" id="fotoembase64" src="${modelLogin.fotouser}">
-										        </c:if>
-										        <!-- Se não já tiver imagem insere uma imagem padrão-->
-										        <c:if test="${modelLogin.fotouser == '' || modelLogin.fotouser == null}">
-										            <img class="imagemUser" alt="Imagem User" id="fotoembase64" src="<%= request.getContextPath() %>/image/user4_64X64.png">
-										        </c:if>
-										    </div>
+											    <c:choose>
+											        <c:when test="${modelLogin.fotouser != '' && modelLogin.fotouser != null}">
+											            <img class="imagemUser" alt="Imagem User" id="fotoembase64" src="${modelLogin.fotouser}">
+											        </c:when>
+											        <c:otherwise>
+											            <img class="imagemUser" alt="Imagem User" id="fotoembase64" src="<%= request.getContextPath() %>/image/user4_64X64.png">
+											        </c:otherwise>
+											    </c:choose>
+											</div>
+
+										    
 										    <!-- aceitará apenas imagem -->
 										    <input type="file" alt="Imagem User" id="fileFoto" name="fileFoto" accept="image/*" onchange="visualizarImg('fotoembase64', 'fileFoto');" class="buttonImagemUser form-control-file">
 											</div>											
@@ -253,11 +256,13 @@
 												<button type="button"
 													class="btn btn-danger waves-effect waves-light"
 													onclick="criarDelete();">Excluir</button>												
-												<!-- Button trigger modal -->
+												<!-- Button trigger modal 
 												<button type="button"
 													class="btn btn-secondary waves-effect waves-light"
 													data-toggle="modal" data-target="#exampleModalUsusario">
-													Consultar</button>												
+													Consultar
+												</button>
+												-->											
 											</div>											
 										</form>
 										<div class="form-cad-user-msg">
@@ -298,55 +303,8 @@
 			</div>
 		</div>
 		  
-		<jsp:include page="javaScriptFile.jsp"></jsp:include>	
+		<jsp:include page="javaScriptFile.jsp"></jsp:include>			
 		
-		
-		<!-- Modal - Aula2.41 -->
-		<div class="modal fade" id="exampleModalUsusario" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Pesquisar</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control"
-								placeholder="Digite sua busca" aria-label="nome" id="nomeBusca"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-success waves-effect waves-light"
-									type="button" onclick="buscarUsuario();">Buscar</button>
-							</div>
-						</div>
-
-						<div style="height: 300px; overflow: scroll;">
-						<table class="table" id="tabelaResultados">
-							<thead>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Nome</th>
-									<th scope="col">Ver</th>
-								</tr>
-							</thead>
-							<tbody>
-
-							</tbody>
-						</table>					
-						</div>
-						<span id="totalResultados"></span> <!-- Mostra quantidade de registros -->
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Fechar</button>
-					</div>
-				</div>
-			</div>
-		</div>		
 		
 		<script type="text/javascript">
 		/*Máscara para CPF*/
@@ -474,65 +432,46 @@
 		    }
 		}
 		
-		
-		/* Editar Query modal*/
-		function verEditar(id){
-			var urlAction = document.getElementById('formUser').action;
-			window.location.href = urlAction + '?acao=buscarEditar&id='+id;
-		}	
-		
-		/*botão busca com Ajax*/
-		function buscarUsuario() {
-			var nomeBusca = document.getElementById('nomeBusca').value;
-
-			/* validando se campo tem dado*/
-			if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != '') {
-				var urlAction = document.getElementById('formUser').action;
-				$.ajax({
-					method: 'get',
-					url: urlAction,
-					data: "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
-					success: function (response) {				 
-					
-						var json = JSON.parse(response);
-						
-						$('#tabelaResultados > tbody > tr').remove();
-						
-							for(var p = 0; p < json.length; p++){
-								$('#tabelaResultados > tbody').append('<tr> <td>'+ json[p].id +'</td> <td>'+ json[p].nome +'</td> <td><button onclick="verEditar('+json[p].id+')" class="btn btn-info">Ver</button></td> </tr>');
-							}
-							
-							document.getElementById('totalResultados').textContent = 'Resultados encontrados: ' + json.length; /* gera quantidade de registros*/						
-					}
-								
-				}).fail(function(xhr, status, errorThrown) {
-				  alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
-				});				
-			}
-		}
-		
 	
 		/*Delete com JS*/
 		function criarDelete() {
-   
-	    if(confirm('Deseja realmente excluir os dados?')) {
+		    const formUser = document.getElementById("formUser");
+		    const campos = formUser.querySelectorAll('input, select, option, textarea, radio, file');
+		    let camposVazios = false;
 		
-		    document.getElementById("formUser").method = 'get';
-		    document.getElementById("acao").value = 'deletar';
-		    document.getElementById("formUser").submit();			    
-	    	}
-	    	limparForm()
+		    campos.forEach(campo => {
+		        // Permitir que apenas o campo 'complemento' possa ser vazio
+		        if (campo.type !== 'hidden' && campo.value.trim() === '' && campo.name !== 'complemento' && campo.name !== 'fileFoto') {
+		            camposVazios = true;
+		        }
+		    });
+		
+		    if (!camposVazios && confirm('Deseja realmente excluir os dados?')) {
+		        formUser.method = 'get';
+		        document.getElementById("acao").value = 'deletar';
+		        formUser.submit();
+		    } else if (camposVazios) {
+		        alert("Existem campos vazios que precisam ser preenchidos!");
+		    }
+		
+		    limparForm();
 		}
 
 
 		/* Limpa o form */
-		function limparForm() {
-			var elementos = document.getElementById("formUser").elements; // Retorna os elementos HTML dentro do form
+        function limparForm() {
+            var elementos = document.getElementById("formUser").elements; // Retorna os elementos HTML dentro do form
 
-			for (var p = 0; p < elementos.length; p++) {
-				elementos[p].value = '';
-			}
-		}
+            for (var p = 0; p < elementos.length; p++) {
+                elementos[p].value = '';
+            }
+
+            // Limpa a imagem de visualização
+            var preview = document.getElementById('fotoembase64');
+            if (preview) {
+                preview.src = '<%= request.getContextPath() %>/image/user4_64X64.png';
+            }
+        }
 		</script>
 	</div>
 </body>

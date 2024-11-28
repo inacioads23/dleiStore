@@ -9,16 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap CSS -->
 
-<link href="<%=request.getContextPath()%>/assets/css/bootstrap/css/bootstrap.min_5.3.1.css"
+<link href="${pageContext.request.contextPath}/assets/css/bootstrap/css/bootstrap.min_5.3.1.css"
 	rel="stylesheet" />
 
-<link href="<%=request.getContextPath()%>/assets/css/myCss/style.css"
+<link href="${pageContext.request.contextPath}/assets/css/myCss/style.css"
 	rel="stylesheet" />
 <link
-	href="<%=request.getContextPath()%>/assets/css/myCss/form-login.css"
+	href="${pageContext.request.contextPath}/assets/css/myCss/form-login.css"
 	rel="stylesheet" />
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/assets/js/jquery-3.6.0.min.js"></script>
+	src="${pageContext.request.contextPath}/assets/js/jquery-3.6.0.min.js"></script>
 
 <title>DLEI Store - Login</title>
 
@@ -31,13 +31,13 @@
 	<!-- Passando parâmetro para outra página: "receber-nome.jsp" -->
 	<!-- Usado"${pageContext.request.contextPath}" para resolver o erro: HTTP Status 404 – Não Encontrado -->
 	<main class="form-signin">
-		<form autocomplete="off" action="<%=request.getContextPath()%>/ServletLogin"
+		<form autocomplete="off" action="${pageContext.request.contextPath}/ServletLogin"
 			method="post" class="needs-validation" novalidate>
 
 			<div>
 				<div class="text-center">
 					<img class="mb-4"
-						src="<%=request.getContextPath()%>/image/logo_100X100.png"
+						src="${pageContext.request.contextPath}/image/logo_100X100.png"
 						class="img-fluid" alt="Imagem responsiva">
 
 					<h2 class="h2-form-login">DLEI Store - Login</h2>
@@ -60,7 +60,7 @@
 				</div>
 				
 				<div class="button-margin-top-login">
-				<a href="<%= request.getContextPath() %>" class="w-100 btn btn-lg btn-secondary" role="button" >Voltar</a>
+				<a href="${pageContext.request.contextPath}" class="w-100 btn btn-lg btn-secondary" role="button" >Home</a>
 				</div>
 
 				<!--  <div>${msg}</div> -->
@@ -74,7 +74,7 @@
 			</div>
 
 			<script type="text/javascript"
-				src="<%=request.getContextPath()%>/assets/js/js-5.1.3/bootstrap.min.js"></script>
+				src="${pageContext.request.contextPath}/assets/js/js-5.1.3/bootstrap.min.js"></script>
 		</form>
 	</main>
 	<script type="text/javascript">

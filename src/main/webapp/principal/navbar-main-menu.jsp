@@ -17,7 +17,7 @@
 				</c:if>
 				<!-- Se o usuário logado não tiver imagem, coloca uma imagem default -->
 				<c:if test="${imagemUser == '' || imagemUser == null }">
-				<img class="img-80 img-radius" src="<%= request.getContextPath() %>/assets/images/avatar-blank.jpg" alt="User-Profile-Image">
+				<img class="img-80 img-radius" src="${pageContext.request.contextPath}/assets/images/avatar-blank.jpg" alt="User-Profile-Image">
 				</c:if>
 				
 				<div class="user-details">
@@ -31,13 +31,13 @@
 					<li class="more-details">
 					   <!-- <a href="user-profile.html"><i class="ti-user"></i>Ver perfil</a> -->
 					   <!--	<a href="#!"><i class="ti-settings"></i>Configurações</a> -->
-							<a href="<%= request.getContextPath() %>/ServletLogin?acao=logout"><i
+							<a href="${pageContext.request.contextPath}/ServletLogin?acao=logout"><i
 							class="ti-layout-sidebar-left"></i>Sair</a></li>
 				</ul>
 			</div>
 		</div>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class="active"><a href="<%= request.getContextPath() %>/principal/principal.jsp"
+			<li class="active"><a href="${pageContext.request.contextPath}/principal/principal.jsp"
 				class="waves-effect waves-dark">
 				<span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
 				<span class="pcoded-mtext pcoded-mtext-nav" data-i18n="nav.dash.main">Home</span>
@@ -52,7 +52,7 @@
 					<!-- Só será visível para o Administrador -->
 						
 					<li>
-						<a href="<%= request.getContextPath() %>/ServletUsuarioController?acao=listarUser"
+						<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=listarUser"
 						class="waves-effect waves-dark">
 							<span class="pcoded-micon"><i class="ti-layers"></i></span>
 							<span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Usuário</span>
@@ -60,11 +60,11 @@
 					</li>					
 					
 					<li>
-						<a href="#!" class="waves-effect waves-dark">
-							<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-							<span class="pcoded-mtext" data-i18n="nav.form-components.main">Produtos</span>
-							<span class="pcoded-mcaret"></span>
-						</a>
+						<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=listarProd"
+						class="waves-effect waves-dark">
+							<span class="pcoded-micon"><i class="ti-layers"></i></span>
+							<span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Produto</span>
+							<span class="pcoded-mcaret"></span></a>
 					</li>
 					
 				</ul>
@@ -74,14 +74,14 @@
 		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Relatório</div>
 			<ul class="pcoded-item pcoded-left-item">
 				<li>
-					<a href="<%= request.getContextPath() %>/principal/rel-user.jsp" class="waves-effect waves-dark">
+					<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=imprimirRelatorioUser" class="waves-effect waves-dark">
 						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Usuário</span>
 						<span class="pcoded-mcaret"></span>
 					</a>
 				</li>
 				<li>
-					<a href="#!" class="waves-effect waves-dark">
+					<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=imprimirRelatorioProd" class="waves-effect waves-dark">
 						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Produtos</span>
 						<span class="pcoded-mcaret"></span>
@@ -89,7 +89,41 @@
 				</li>				
 			</ul>
 		</c:if>
-			
+		
+		<c:if test="${perfil == 'ADMIN'}">
+		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Consulta</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li>
+					<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=queryUser" class="waves-effect waves-dark">
+						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Usuário</span>
+						<span class="pcoded-mcaret"></span>
+					</a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=queryProd" class="waves-effect waves-dark">
+						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Produtos</span>
+						<span class="pcoded-mcaret"></span>
+					</a>
+				</li>				
+			</ul>
+		</c:if>
+		
+		<c:if test="${perfil == 'ADMIN'}">	
+		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Orçamentos</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li>
+					<a href="${pageContext.request.contextPath}/ServletOrcamentoController?acao=imprimirRelatorioProd" class="waves-effect waves-dark">
+						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Orçamentos Solicitados</span>
+						<span class="pcoded-mcaret"></span>
+					</a>
+				</li>				
+			</ul>
+		</c:if>
+		
+		<c:if test="${perfil != 'ADMIN'}">	
 		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Orçamentos</div>
 			<ul class="pcoded-item pcoded-left-item">
 				<li>
@@ -99,6 +133,7 @@
 						<span class="pcoded-mcaret"></span>
 					</a>
 				</li>				
-			</ul>		
+			</ul>
+		</c:if>	
 	</div>
 </nav>
