@@ -33,7 +33,80 @@
 									<!-- Page-body start -->
 									<div class="page-body">
 										<div class="row">
-											<h2>Home Back-End</h2>
+											<!-- task, page, download counter  start -->
+											<div class="col-xl-3 col-md-6">
+												<div class="card">
+													<div class="card-block">
+														<div class="row align-items-center">
+															<div class="col-12">
+																<h3 class="cards-principal">Cadastro</h3>
+																<div >
+																<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=listarUser"
+																class="btn btn-primary btn-lg btn-block">Usuário</a>
+																</div>
+																<div class="button-margin-top-principal">
+																<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=listarProd"
+																class="btn btn-primary btn-lg btn-block">Produto</a>
+																</div>
+															</div>															
+														</div>
+													</div>													
+												</div>
+											</div>
+											<div class="col-xl-3 col-md-6">
+												<div class="card">
+													<div class="card-block">
+														<div class="row align-items-center">
+															<div class="col-12">
+																<h3 class="cards-principal">Consulta</h3>
+																<div >
+																<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=queryUser"
+																class="btn btn-primary btn-lg btn-block">Usuário</a>
+																</div>
+																<div class="button-margin-top-principal">
+																<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=queryProd"
+																class="btn btn-primary btn-lg btn-block">Produto</a>
+																</div>
+															</div>															
+														</div>
+													</div>													
+												</div>
+											</div>
+											<div class="col-xl-3 col-md-6">
+												<div class="card">
+													<div class="card-block">
+														<div class="row align-items-center">
+															<div class="col-12">
+																<h3 class="cards-principal">Relatório</h3>
+																<div >
+																<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=imprimirRelatorioUser"
+																class="btn btn-primary btn-lg btn-block">Usuário</a>
+																</div>
+																<div class="button-margin-top-principal">
+																<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=imprimirRelatorioProd"
+																class="btn btn-primary btn-lg btn-block">Produto</a>
+																</div>
+															</div>															
+														</div>
+													</div>													
+												</div>
+											</div>
+											<div class="col-xl-3 col-md-6">
+												<div class="card">
+													<div class="card-block">
+														<div class="row align-items-center">
+															<div class="col-12">
+																<h3 class="cards-principal">Orçamentos</h3>
+																<div >
+																<a href="${pageContext.request.contextPath}/ServletOrcamentoController?acao=imprimirRelatorioProd"
+																class="btn btn-primary btn-lg btn-block">Orçamentos</a>
+																</div>
+															</div>															
+														</div>
+													</div>													
+												</div>
+											</div>
+											<!-- task, page, download counter  end -->
 										</div>
 
 									</div>

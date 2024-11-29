@@ -1,5 +1,5 @@
 
-<title>DLEI Store - Back-End</title>
+<title>DLEI Store - Administração</title>
 <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 10]>
@@ -21,7 +21,7 @@
 	rel="stylesheet">
 
 	
-<!-- Required Fremwork -->
+<!-- Required Framwork -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/bootstrap/css/bootstrap.min.css">	
 <!-- themify icon -->

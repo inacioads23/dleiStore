@@ -13,6 +13,8 @@
 <meta name="description"
 	content="Projeto de PI - 2º Semestre de 2024" />
 <meta name="author" content="Inácio, Lucas, Davi, Elivelton" />
+<!-- Favicon icon -->
+<link rel="icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico" type="image/x-icon">
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/bootstrap/css/bootstrap.min.css">
@@ -77,11 +79,11 @@
 			
 			    <div class="card-block">
 			        <button type="button"
-			            class="btn btn-primary waves-effect waves-light"
+			            class="btn btn-primary btn-lg"
 			            onclick="limparForm();">Limpar</button>
 			        <button type="submit"
-			            class="btn btn-success waves-effect waves-light">Enviar</button>
-			        <a href="<%= request.getContextPath() %>" class="btn btn-secondary waves-effect waves-light" role="button">Home</a>
+			            class="btn btn-success btn-lg">Enviar</button>
+			        <a href="<%= request.getContextPath() %>" class="btn btn-secondary btn-lg role="button">Home</a>
 			    </div>
 			</form>
 			
