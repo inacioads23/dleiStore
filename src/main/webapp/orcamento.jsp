@@ -83,7 +83,7 @@
 			            onclick="limparForm();">Limpar</button>
 			        <button type="submit"
 			            class="btn btn-success btn-lg">Enviar</button>
-			        <a href="<%= request.getContextPath() %>" class="btn btn-secondary btn-lg role="button">Home</a>
+			        <a class="btn btn-secondary btn-lg" href="<%= request.getContextPath()%>" role="button">Home</a>
 			    </div>
 			</form>
 			

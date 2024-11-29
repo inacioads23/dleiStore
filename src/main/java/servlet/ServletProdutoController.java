@@ -64,12 +64,10 @@ public class ServletProdutoController extends ServletGenericUtil {
 			// Edita no Form Cadastro de produto
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
 			    String id = request.getParameter("id");
-			    System.out.println("\n=> doGet/ acao:  else if (buscarEditar) <=\nID para edição: " + id);
 
 			    ModelProduto modelProduto = daoProduto.consultaProdutoID(id);
 
 			    List<ModelProduto> modelProdutos = daoProduto.consultaProdListReport();
-			    System.out.println("Total de produtos encontrados para o relatório: " + modelProdutos.size() + "\n");
 			    
 			    request.setAttribute("modelProdutos", modelProdutos);
 			    request.setAttribute("msg", "Editando Produto");
