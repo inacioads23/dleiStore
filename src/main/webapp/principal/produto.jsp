@@ -38,7 +38,7 @@
 									<!-- Page-body start -->
 									<div class="page-body">									
 										
-											<h3>Cadastro de produto</h3>										
+											<h3>Cadastro de Produto</h3>										
 																			
 										<form action="<%=request.getContextPath()%>/ServletProdutoController"
 											method="post" id="formProd">

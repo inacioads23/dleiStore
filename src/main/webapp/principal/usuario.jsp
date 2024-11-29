@@ -38,7 +38,7 @@
 									<!-- Page-body start -->
 									<div class="page-body">									
 										
-											<h3>Cadastro de usuário</h3>										
+											<h3>Cadastro de Usuário</h3>										
 
 										<!-- Retorna o valor para o form value="${modelLogin.nome}" -->
 										<!-- "multipart/form-data" para permitir upload -->
