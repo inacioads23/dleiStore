@@ -39,7 +39,7 @@ public class ServletLogin extends HttpServlet {
 		if (acao != null && !acao.isEmpty() & acao.equalsIgnoreCase("logout")) {
 			request.getSession().invalidate();// invalida/ derruba a sessão
 			//Redireciona para página de login
-			RequestDispatcher redirecionar = request.getRequestDispatcher("/index.jsp");
+			RequestDispatcher redirecionar = request.getRequestDispatcher("/login.jsp");
 			redirecionar.forward(request, response);
 		} else {
 			doPost(request, response); // Absorve a requisição doGet e não deixa a página em branco

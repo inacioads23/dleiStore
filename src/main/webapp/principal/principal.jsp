@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set scope="session" var="perfil" value='<%= request.getSession().getAttribute("perfil") %>'></c:set>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,14 +29,19 @@
 						<jsp:include page="page-header.jsp"></jsp:include>
 						<!-- Page-header end -->
 
+						
 						<div class="pcoded-inner-content">
+						
 							<!-- Main-body start -->
 							<div class="main-body">
 								<div class="page-wrapper">
 									<!-- Page-body start -->
+									
 									<div class="page-body">
+										<!-- task, page, download counter  start -->
 										<div class="row">
-											<!-- task, page, download counter  start -->
+											
+											<c:if test="${perfil == 'ADMIN'}">
 											<div class="col-xl-3 col-md-6">
 												<div class="card">
 													<div class="card-block">
@@ -53,6 +61,8 @@
 													</div>													
 												</div>
 											</div>
+											</c:if>
+											<c:if test="${perfil == 'ADMIN'}">
 											<div class="col-xl-3 col-md-6">
 												<div class="card">
 													<div class="card-block">
@@ -72,6 +82,8 @@
 													</div>													
 												</div>
 											</div>
+											</c:if>
+											<c:if test="${perfil == 'ADMIN'}">
 											<div class="col-xl-3 col-md-6">
 												<div class="card">
 													<div class="card-block">
@@ -91,6 +103,8 @@
 													</div>													
 												</div>
 											</div>
+											</c:if>
+											<c:if test="${perfil == 'ADMIN'}">
 											<div class="col-xl-3 col-md-6">
 												<div class="card">
 													<div class="card-block">
@@ -106,21 +120,40 @@
 													</div>													
 												</div>
 											</div>
+											</c:if>
+											<c:if test="${perfil != 'ADMIN'}">
+											<div class="col-xl-3 col-md-6">
+												<div class="card">
+													<div class="card-block">
+														<div class="row align-items-center">
+															<div class="col-12">
+																<h3 class="cards-principal">Orçamentos</h3>
+																<div >
+																<a href="#!"
+																class="btn btn-primary btn-lg btn-block">Meus Orçamentos</a>
+																</div>
+															</div>															
+														</div>
+													</div>													
+												</div>
+											</div>
+											</c:if>									
 											<!-- task, page, download counter  end -->
+											</div>
+										<!-- Page-body end -->
 										</div>
-
 									</div>
-									<!--  project and team member end -->
+								<!-- Main-body end -->	
 								</div>
-							</div>
-							<!-- Page-body end -->
+								
+							</div>						
+							
 						</div>
 						<div id="styleSelector"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<jsp:include page="javaScriptFile.jsp"></jsp:include>
 </body>
