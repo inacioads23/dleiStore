@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 
-    <head>
 <title>DLEI Store - Back-End</title>
 <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -10,7 +7,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 <!-- Meta -->
-<meta charset="utf-8">
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -43,4 +40,3 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/myCss/style.css">
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/myCss/form-and-query.css">
-</head>

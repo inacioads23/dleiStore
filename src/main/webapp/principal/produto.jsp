@@ -6,7 +6,10 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+<meta charset="ISO-8859-1">
 <jsp:include page="head.jsp"></jsp:include>
+</head>
 <body>
 	<!-- Pre-loader start -->
 	<jsp:include page="theme-loader.jsp"></jsp:include>
@@ -193,12 +196,7 @@
 													class="btn btn-success waves-effect waves-light">Salvar</button>												
 												<button type="button"
 													class="btn btn-danger waves-effect waves-light"
-													onclick="criarDelete();">Excluir</button>												
-												<!-- Button trigger modal -->
-												<button type="button"
-													class="btn btn-secondary waves-effect waves-light"
-													data-toggle="modal" data-target="#exampleModalUsusario">
-													Consultar</button>												
+													onclick="criarDelete();">Excluir</button>																							
 											</div>											
 										</form>
 										<div class="form-cad-user-msg">
@@ -235,55 +233,8 @@
 			</div>
 		</div>
 		  
-		<jsp:include page="javaScriptFile.jsp"></jsp:include>	
-		
-		 
-		<!-- Modal - Aula2.41 -->
-		<div class="modal fade" id="exampleModalUsusario" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Pesquisar</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control"
-								placeholder="Digite sua busca" aria-label="produto" id="prodBusca"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-success waves-effect waves-light"
-									type="button" onclick="buscarProduto();">Buscar</button>
-							</div>
-						</div>
-
-						<div style="height: 300px; overflow: scroll;">
-						<table class="table" id="tabelaResultados">
-							<thead>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">produto</th>
-									<th scope="col">Ver</th>
-								</tr>
-							</thead>
-							<tbody>
-
-							</tbody>
-						</table>					
-						</div>
-						<span id="totalResultados"></span> <!-- Mostra quantidade de registros -->
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Fechar</button>
-					</div>
-				</div>
-			</div>
-		</div>	
+		<jsp:include page="javaScriptFile.jsp"></jsp:include>			 
+			
 		
 		<script type="text/javascript">	
 		/*Converte , em .*/
@@ -291,69 +242,6 @@
             const input = event.target;
             input.value = input.value.replace(',', '.');
         }
-		
-		/* Editar Query modal*/
-		function verEditar(id) {
-		    var urlAction = document.getElementById('formProd').action;
-		    window.location.href = urlAction + '?acao=buscarEditar&id=' + id;
-		}	
-		
-		function buscarProduto() {
-		    var prodBuscaElement = document.getElementById('prodBusca');
-
-		    if (prodBuscaElement) {
-		        var prodBusca = prodBuscaElement.value;
-
-		        if (prodBusca && prodBusca.trim() !== '') {
-		            var urlAction = document.getElementById('formProd').action;
-
-		            console.log('URL de ação:', urlAction);
-		            console.log('Produto a buscar:', prodBusca.trim());
-
-		            $.ajax({
-		                method: 'get',
-		                url: urlAction,
-		                data: `prodBusca=${prodBusca.trim()}&acao=buscarProdAjax`,
-		                success: function (response) {
-		                    try {
-		                        console.log('Resposta recebida:', response);
-
-		                        var json = JSON.parse(response);
-		                        $('#tabelaResultados > tbody > tr').remove();
-
-		                        if (json.length > 0) {
-		                            for (var p = 0; p < json.length; p++) {
-		                                $('#tabelaResultados > tbody').append(`
-		                                    <tr>
-		                                        <td>${json[p].id}</td>
-		                                        <td>${json[p].produto}</td>
-		                                        <td><button onclick="verEditar(${json[p].id})" class="btn btn-info">Ver</button></td>
-		                                    </tr>
-		                                `);
-		                            }
-
-		                            document.getElementById('totalResultados').textContent = 'Resultados encontrados: ' + json.length;
-		                        } else {
-		                            document.getElementById('totalResultados').textContent = 'Nenhum resultado encontrado.';
-		                        }
-		                    } catch (error) {
-		                        alert('Erro ao processar os dados recebidos.');
-		                        console.error('Erro ao processar JSON:', error);
-		                    }
-		                }
-		            }).fail(function(xhr, status, errorThrown) {
-		                alert('Erro ao buscar produto por id: ' + xhr.responseText);
-		                console.error('Erro na requisição AJAX:', status, errorThrown);
-		            });
-		        } else {
-		            alert('Por favor, insira um valor válido na busca.');
-		        }
-		    } else {
-		        alert('Elemento de busca não encontrado!');
-		    }
-		}
-
-		
 	
 		/*Delete com JS*/
 		function criarDelete() {

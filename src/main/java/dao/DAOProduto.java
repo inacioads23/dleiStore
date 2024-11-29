@@ -62,96 +62,81 @@ public class DAOProduto {
 
 	// Relatorio - lista table atualizada - no form Produto
 	public List<ModelProduto> consultaProdListReport() throws SQLException {
-	    List<ModelProduto> returnReport = new ArrayList<>();
-	    String sql = "SELECT * FROM produto ORDER BY produto";
+		List<ModelProduto> returnReport = new ArrayList<ModelProduto>();
+		sql = "SELECT * FROM produto ORDER BY produto";
 
-	    try (PreparedStatement statement = connection.prepareStatement(sql);
-	         ResultSet resultSet = statement.executeQuery()) {
+		statement = connection.prepareStatement(sql);
+		resultSet = statement.executeQuery();		
 
-	        System.out.println("\n=> Executando consulta do método - List<ModelProduto> consultaProdListReport(): " + statement.toString());
+		while (resultSet.next()) {
+			ModelProduto modelProduto = new ModelProduto(); // Instanciar um novo objeto dentro do loop
+			modelProduto.setId(resultSet.getLong("id"));
+			modelProduto.setCategoria(resultSet.getString("categoria"));
+			modelProduto.setProduto(resultSet.getString("produto"));
+			modelProduto.setTipo(resultSet.getString("tipo"));
+			modelProduto.setVlcompra(resultSet.getBigDecimal("vlcompra"));
+			modelProduto.setIcms(resultSet.getBigDecimal("icms"));
+			modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
 
-	        while (resultSet.next()) {
-	            ModelProduto modelProduto = new ModelProduto(); // Instanciar um novo objeto dentro do loop
-	            modelProduto.setId(resultSet.getLong("id"));
-	            modelProduto.setCategoria(resultSet.getString("categoria"));
-	            modelProduto.setProduto(resultSet.getString("produto"));
-	            modelProduto.setTipo(resultSet.getString("tipo"));
-	            modelProduto.setVlcompra(resultSet.getBigDecimal("vlcompra"));
-	            modelProduto.setIcms(resultSet.getBigDecimal("icms"));
-	            modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
-
-	            returnReport.add(modelProduto);
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        throw new SQLException("-> Erro ao executar consulta: " + e.getMessage() + "\n");
-	    }
-
-	    System.out.println("-> Número de produtos no relatório: " + returnReport.size() + "\n");
-	    return returnReport;
+			returnReport.add(modelProduto);
+		}
+		return returnReport;
 	}
 
-	
-	//Query mostrada na atualização dos campos no Form Cadastro de produto - TESTAR
+	// Query mostrada na atualização dos campos no Form Cadastro de produto - TESTAR
 	public ModelProduto consultaProdFiltradoPorNome(String produto) throws SQLException {
-	    ModelProduto modelProduto = null;
-	    String sql = "SELECT * FROM produto"; // LIMIT 1 para garantir um único resultado
-	    PreparedStatement statement = connection.prepareStatement(sql);
+		ModelProduto modelProduto = null;
+		String sql = "SELECT * FROM produto"; // LIMIT 1 para garantir um único resultado
+		PreparedStatement statement = connection.prepareStatement(sql);
 
-	    ResultSet resultSet = statement.executeQuery();
+		ResultSet resultSet = statement.executeQuery();
 
-	    if (resultSet.next()) {
-	        modelProduto = new ModelProduto();
-	        modelProduto.setId(resultSet.getLong("id"));
-	        modelProduto.setCategoria(resultSet.getString("categoria"));
-	        modelProduto.setProduto(resultSet.getString("produto"));
-	        modelProduto.setTipo(resultSet.getString("tipo"));
-	        modelProduto.setVlcompra(resultSet.getBigDecimal("vlcompra"));
-	        modelProduto.setIcms(resultSet.getBigDecimal("icms"));
-	        modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
-	    }
+		if (resultSet.next()) {
+			modelProduto = new ModelProduto();
+			modelProduto.setId(resultSet.getLong("id"));
+			modelProduto.setCategoria(resultSet.getString("categoria"));
+			modelProduto.setProduto(resultSet.getString("produto"));
+			modelProduto.setTipo(resultSet.getString("tipo"));
+			modelProduto.setVlcompra(resultSet.getBigDecimal("vlcompra"));
+			modelProduto.setIcms(resultSet.getBigDecimal("icms"));
+			modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
+		}
 
-	    return modelProduto;
+		return modelProduto;
 	}
 
 	// ok
 	// Consulta digitando apenas parte dos dados (produto) - Botão pesquisar/ Modal
 	public List<ModelProduto> consultaProdutoList(String produto) throws SQLException {
-	    List<ModelProduto> queryProdList = new ArrayList<>();
+		List<ModelProduto> queryProdList = new ArrayList<ModelProduto>();
 
-	    String sql = "SELECT * FROM produto WHERE UPPER(produto) LIKE UPPER(?)";
+		sql = "SELECT * FROM produto WHERE TRANSLATE(UPPER(produto), 'ÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ', 'AEIOUAEIOUAEIOUAOC')"
+				+ " LIKE TRANSLATE(UPPER(?), 'ÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ', 'AEIOUAEIOUAEIOUAOC')";
 
-	    try (PreparedStatement statement = connection.prepareStatement(sql)) {
-	        statement.setString(1, "%" + produto + "%");
 
-	        System.out.println("\n=> Executando consulta do método - List<ModelProduto> consultaProdutoList: " + statement.toString());
+		statement = connection.prepareStatement(sql);
+		statement.setString(1, "%" + produto + "%");
 
-	        try (ResultSet resultSet = statement.executeQuery()) {
-	            while (resultSet.next()) {
-	                ModelProduto modelProduto = new ModelProduto(); // Instanciar um novo objeto dentro do loop
-	                modelProduto.setId(resultSet.getLong("id"));
-	                modelProduto.setCategoria(resultSet.getString("categoria"));
-	                modelProduto.setProduto(resultSet.getString("produto"));
-	                modelProduto.setTipo(resultSet.getString("tipo"));
-	                modelProduto.setVlcompra(resultSet.getBigDecimal("vlcompra"));
-	                modelProduto.setIcms(resultSet.getBigDecimal("icms"));
-	                modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
+		resultSet = statement.executeQuery();
 
-	                queryProdList.add(modelProduto);
-	            }
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        throw new SQLException("-> Erro ao executar consulta: " + e.getMessage() + "\n");
-	    }
+		while (resultSet.next()) {
+			ModelProduto modelProduto = new ModelProduto(); // Instanciar um novo objeto dentro do loop
+			modelProduto.setId(resultSet.getLong("id"));
+			modelProduto.setCategoria(resultSet.getString("categoria"));
+			modelProduto.setProduto(resultSet.getString("produto"));
+			modelProduto.setTipo(resultSet.getString("tipo"));
+			modelProduto.setVlcompra(resultSet.getBigDecimal("vlcompra"));
+			modelProduto.setIcms(resultSet.getBigDecimal("icms"));
+			modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
 
-	    System.out.println("-> Número de produtos encontrados: \nMétodo: consultaProdutoList\n" + queryProdList.size() + "\n");
-	    return queryProdList;
+			queryProdList.add(modelProduto);
+		}
+
+		return queryProdList;
 	}
 
-
 	// ok
-	// Retorna query baseada nome do produto 
+	// Retorna query baseada nome do produto
 	public ModelProduto consultaProduto(String produto) throws SQLException {
 		String sql = "SELECT * FROM produto WHERE UPPER(produto) = UPPER(?)";
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -170,19 +155,19 @@ public class DAOProduto {
 			modelProduto.setVlvenda(resultSet.getBigDecimal("vlvenda"));
 		}
 		return modelProduto;
-	}	
+	}
 
 	// ok
 	// Consulta por ID
 	public ModelProduto consultaProdutoID(String id) throws SQLException {
 		ModelProduto modelProduto = new ModelProduto();
 		sql = "SELECT * FROM produto WHERE id = ? ORDER BY id";
-		
+
 		statement = connection.prepareStatement(sql);
 		statement.setLong(1, Long.parseLong(id));
 
 		resultSet = statement.executeQuery();
-		
+
 		if (resultSet.next()) {
 			modelProduto.setId(resultSet.getLong("id"));
 			modelProduto.setCategoria(resultSet.getString("categoria"));
@@ -197,36 +182,34 @@ public class DAOProduto {
 
 	// Verificação duplicação no nome do produto
 	public boolean validarNomeProduto(String produto) throws Exception {
-	    String sql = "SELECT COUNT(1) > 0 AS existe FROM produto WHERE TRIM(UPPER(produto)) = TRIM(UPPER(?))";
-	    try (PreparedStatement statement = connection.prepareStatement(sql)) {
-	        statement.setString(1, produto);
-	        
-	        try (ResultSet resultSet = statement.executeQuery()) {
-	            if (resultSet.next()) {
-	                boolean existe = resultSet.getBoolean("existe");
-	                System.out.println("Validação de produto: " + produto + " - Existe: " + existe);
-	                return existe;
-	            }
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        throw new Exception("Erro ao validar nome do produto: " + e.getMessage());
-	    }
-	    return false;
+		String sql = "SELECT COUNT(1) > 0 AS existe FROM produto WHERE TRIM(UPPER(produto)) = TRIM(UPPER(?))";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setString(1, produto);
+
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					boolean existe = resultSet.getBoolean("existe");
+					System.out.println("Validação de produto: " + produto + " - Existe: " + existe);
+					return existe;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Erro ao validar nome do produto: " + e.getMessage());
+		}
+		return false;
 	}
-	
-	
-	
+
 	/*
-	public boolean validarNomeProduto(String produto) throws Exception {
-		sql = "SELECT COUNT(1) > 0 AS existe FROM produto WHERE produto = UPPER('" + produto + "')";
-		statement = connection.prepareStatement(sql);
-
-		resultSet = statement.executeQuery();
-
-		resultSet.next();// Para entrar nos resultados do sql
-		return resultSet.getBoolean("existe");
-	}*/
+	 * public boolean validarNomeProduto(String produto) throws Exception { sql =
+	 * "SELECT COUNT(1) > 0 AS existe FROM produto WHERE produto = UPPER('" +
+	 * produto + "')"; statement = connection.prepareStatement(sql);
+	 * 
+	 * resultSet = statement.executeQuery();
+	 * 
+	 * resultSet.next();// Para entrar nos resultados do sql return
+	 * resultSet.getBoolean("existe"); }
+	 */
 
 	// Deleta produto
 	public void deletarProd(String id) throws SQLException {

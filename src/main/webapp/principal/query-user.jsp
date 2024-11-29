@@ -5,7 +5,10 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
 <jsp:include page="head.jsp"></jsp:include>
+</head>
 <body>
     <!-- Pre-loader start -->
     <jsp:include page="theme-loader.jsp"></jsp:include>
@@ -108,12 +111,13 @@
         /* Validando se o campo tem dado */
         if (nomeBusca.trim() !== '') {
             var urlAction = document.getElementById('formUser').action;
-            $.ajax({
-                method: 'GET',
-                url: urlAction,
-                data: { nomeBusca: nomeBusca, acao: 'buscarUserAjax' },
-                success: function (response) {
-                    var json = JSON.parse(response);
+            var request = new XMLHttpRequest();
+            request.open('GET', urlAction + '?nomeBusca=' + encodeURIComponent(nomeBusca) + '&acao=buscarUserAjax', true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=ISO-8859-1');
+
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    var json = JSON.parse(request.responseText);
 
                     $('#tabelaResultados > tbody > tr').remove();
 
@@ -123,11 +127,16 @@
 
                     document.getElementById('totalResultados').textContent = 'Resultados encontrados: ' + json.length; /* Gera quantidade de registros */
                 }
-            }).fail(function(xhr, status, errorThrown) {
-                alert('Erro ao buscar usuבrio por nome: ' + xhr.responseText);
-            });
+            };
+
+            request.onerror = function () {
+                alert('Erro ao buscar usuבrio por nome: ' + request.responseText);
+            };
+
+            request.send();
         }
     }
+
 
     function verEditar(id) {
         var urlAction = $('#formUser').attr('action');

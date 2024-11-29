@@ -5,7 +5,10 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
 <jsp:include page="head.jsp"></jsp:include>
+</head>
 <body>
     <!-- Pre-loader start -->
     <jsp:include page="theme-loader.jsp"></jsp:include>
@@ -47,18 +50,20 @@
                                                     <div class="card-block">
                                                         <h3>Consulta de Produto</h3>
                                                         
-                                                        <form id="formConsulta" action="${pageContext.request.contextPath}/ServletProdutoController" method="get">
-												            <div class="form-group">
-												                
-												                <label for="prodBusca">Nome do Produto:</label>
-												                <input type="text" class="form-control" id="prodBusca" name="prodBusca" placeholder="Digite o nome do produto" required>
-												            
-												            <input type="hidden" name="acao" value="buscarProdAjax">
-												            <button type="submit" class="btn btn-primary">Consultar</button>
-												            </div>
+                                                        <form id="formProd" action="${pageContext.request.contextPath}/ServletProdutoController">
+												           												            
+												            <div class="input-group mb-3">
+															<input type="text" class="form-control"
+																placeholder="Busca por produto" aria-label="nome" id="prodBusca" name="prodBusca"
+																aria-describedby="basic-addon2">
+															<div class="input-group-append">
+																<button class="btn btn-success waves-effect waves-light"
+																	type="button" onclick="buscarProduto();">Buscar</button>
+															</div>
+															</div>
+															
 												        </form>
-													        <hr>
-													        <h3 id="totalResultados">Resultados encontrados: 0</h3>
+													        <p id="totalResultados"></p>
 												        <table class="table table-bordered" id="tabelaResultados">
 												            <thead>
 												                <tr>
@@ -97,82 +102,44 @@
     <!-- class pcoded end -->
     </div>
 
-    <jsp:include page="javaScriptFile.jsp"></jsp:include>   
+    <jsp:include page="javaScriptFile.jsp"></jsp:include>     
     
-    <canvas width="600" height="400"></canvas>
     <script>    
-        $(document).ready(function() {
-            $('#formConsulta').on('submit', function(event) {
-                event.preventDefault(); // Evita o envio padrדo do formulבrio
-                buscarProduto(); // Chama a funחדo de busca via AJAX
-            });
-            
-            function buscarProduto() {
-                var prodBusca = $('#prodBusca').val().trim();
+	    function buscarProduto() {
+	        var prodBusca = document.getElementById('prodBusca').value;
+	
+	        /* Validando se o campo tem dado */
+	        if (prodBusca.trim() !== '') {
+	            var urlAction = document.getElementById('formProd').action;
+	            var request = new XMLHttpRequest();
+	            request.open('GET', urlAction + '?prodBusca=' + encodeURIComponent(prodBusca) + '&acao=buscarProdAjax', true);
+	            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=ISO-8859-1');
+	
+	            request.onreadystatechange = function () {
+	                if (request.readyState === 4 && request.status === 200) {
+	                    var json = JSON.parse(request.responseText);
+	
+	                    $('#tabelaResultados > tbody > tr').remove();
+	
+	                    for (var p = 0; p < json.length; p++) {
+	                        $('#tabelaResultados > tbody').append('<tr> <td>' + json[p].id + '</td> <td>' + json[p].produto + '</td> <td><button onclick="verEditar(' + json[p].id + ')" class="btn btn-info">Ver</button></td> </tr>');
+	                    }
+	
+	                    document.getElementById('totalResultados').textContent = 'Resultados encontrados: ' + json.length; /* Gera quantidade de registros */
+	                }
+	            };
+	
+	            request.onerror = function () {
+	                alert('Erro ao buscar por produto: ' + request.responseText);
+	            };
+	
+	            request.send();
+	        }
+	    }
 
-                if (prodBusca !== '') {
-                    var urlAction = $('#formConsulta').attr('action');
-
-                    $.ajax({
-                        method: 'get',
-                        url: urlAction,
-                        data: { prodBusca: prodBusca, acao: 'buscarProdAjax' },
-                        success: function(response) {
-                            try {
-                                console.log('Resposta recebida:', response);
-                                
-                                // Certifique-se de que a resposta י realmente um JSON
-                                if (typeof response === "string") {
-                                    try {
-                                        response = JSON.parse(response);
-                                    } catch (e) {
-                                        console.error('Erro ao parsear JSON:', e);
-                                        alert('Erro ao processar os dados recebidos.');
-                                        return;
-                                    }
-                                }
-
-                                console.log('Dados JSON:', response);
-                                $('#tabelaResultados > tbody > tr').remove();
-
-                                if (response.length > 0) {
-                                    response.forEach(produto => {
-                                        console.log(`Produto ID: ${produto.id}`);
-                                        console.log(`Nome do Produto: ${produto.produto}`);
-
-                                        $('#tabelaResultados > tbody').append(`
-                                            <tr>
-                                                <td>${produto.id}</td>
-                                                <td>${produto.produto}</td>
-                                                <td><button onclick="verEditar(${produto.id})" class="btn btn-info">Ver</button></td>
-                                            </tr>
-                                        `);
-                                    });
-
-                                    $('#totalResultados').text('Resultados encontrados: ' + response.length);
-                                } else {
-                                    $('#totalResultados').text('Nenhum resultado encontrado.');
-                                }
-                            } catch (error) {
-                                console.error('Erro ao processar os dados recebidos:', error);
-                                alert('Erro ao processar os dados recebidos.');
-                            }
-                        }
-                    }).fail(function(xhr, status, errorThrown) {
-                        alert('Erro ao buscar produto: ' + xhr.responseText);
-                        console.error('Erro na requisiחדo AJAX:', status, errorThrown);
-                    });
-                } else {
-                    alert('Por favor, insira um valor vבlido na busca.');
-                }
-            }
-
-
-
-        });
 
         function verEditar(id) {
-            var urlAction = $('#formConsulta').attr('action');
+            var urlAction = $('#formProd').attr('action');
             window.location.href = urlAction + '?acao=buscarEditar&id=' + id;
         }
     </script>

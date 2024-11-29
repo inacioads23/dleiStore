@@ -63,9 +63,10 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				
 				ObjectMapper mapper = new ObjectMapper();
 				String json = mapper.writeValueAsString(dadosJsonUser);
-				response.getWriter().write(json);
-				
+				response.getWriter().write(json);				
 			}
+			
+			// Edita no Form Cadastro de usuário
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
 				String id = request.getParameter("id"); 
 				
@@ -89,38 +90,18 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				request.setAttribute("modelLogins", modelLogins);
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			}		
-			
-			// Download da foto - implantação futura
-			
-			// Paginação - implantação futura			
+								
 			
 			// Relatório
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
 				
-				request.setAttribute("listaUser", daoUsuario.consultaUsuarioListReport());
-				
+				request.setAttribute("listaUser", daoUsuario.consultaUsuarioListReport());				
 				
 				request.getRequestDispatcher("principal/rel-user.jsp").forward(request, response);
-			}
-			
-			/*
-			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
-				String dataInicial = request.getParameter("dataInicial");
-				String dataFinal = request.getParameter("dataFinal");
-				
-				if(dataInicial == null || dataInicial.isEmpty() && dataFinal == null || dataFinal.isEmpty()) {
-					request.setAttribute("listaUser", daoUsuario.consultaUsuarioList(super.getUserLogado(request)));
-				}
-				
-				request.setAttribute("dataInicial", dataInicial);
-				request.setAttribute("dataFinal", dataFinal);
-				request.getRequestDispatcher("principal/rel-user.jsp").forward(request, response);
-			}
-			*/
+			}			
 			
 			// Chama Query
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("queryUser")) {
-			    // Ajustar redirecionamento para a página JSP
 			    request.getRequestDispatcher("principal/query-user.jsp").forward(request, response);
 			}
 			

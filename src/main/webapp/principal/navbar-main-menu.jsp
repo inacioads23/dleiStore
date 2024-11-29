@@ -44,7 +44,7 @@
 				<span class="pcoded-mcaret"></span>
 				</a>
 			</li>			
-		</ul>
+		
 		
 		<c:if test="${perfil == 'ADMIN'}">
 			<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Cadastro</div>
@@ -71,26 +71,6 @@
 		</c:if>
 		
 		<c:if test="${perfil == 'ADMIN'}">
-		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Relatório</div>
-			<ul class="pcoded-item pcoded-left-item">
-				<li>
-					<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=imprimirRelatorioUser" class="waves-effect waves-dark">
-						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Usuário</span>
-						<span class="pcoded-mcaret"></span>
-					</a>
-				</li>
-				<li>
-					<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=imprimirRelatorioProd" class="waves-effect waves-dark">
-						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Produtos</span>
-						<span class="pcoded-mcaret"></span>
-					</a>
-				</li>				
-			</ul>
-		</c:if>
-		
-		<c:if test="${perfil == 'ADMIN'}">
 		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Consulta</div>
 			<ul class="pcoded-item pcoded-left-item">
 				<li>
@@ -109,6 +89,27 @@
 				</li>				
 			</ul>
 		</c:if>
+		
+		<c:if test="${perfil == 'ADMIN'}">
+		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Relatório</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li>
+					<a href="${pageContext.request.contextPath}/ServletUsuarioController?acao=imprimirRelatorioUser" class="waves-effect waves-dark">
+						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Usuário</span>
+						<span class="pcoded-mcaret"></span>
+					</a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/ServletProdutoController?acao=imprimirRelatorioProd" class="waves-effect waves-dark">
+						<span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+						<span class="pcoded-mtext" data-i18n="nav.form-components.main">Produtos</span>
+						<span class="pcoded-mcaret"></span>
+					</a>
+				</li>				
+			</ul>
+		</c:if>		
+		
 		
 		<c:if test="${perfil == 'ADMIN'}">	
 		<div class="pcoded-navigation-label" data-i18n="nav.category.forms"><i class="ti-layout-grid2-alt"></i> Orçamentos</div>

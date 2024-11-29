@@ -51,24 +51,13 @@ public class ServletProdutoController extends ServletGenericUtil {
 			// BOTÃO PESQUISAR - gera a table do modal
 			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarProdAjax")) {
 			    String prodBusca = request.getParameter("prodBusca");
-			    System.out.println("Produto buscado: " + prodBusca);
-
-			    try {
+			
 			        List<ModelProduto> dadosJsonProd = daoProduto.consultaProdutoList(prodBusca);
-			        System.out.println("Produtos encontrados para JSON: " + dadosJsonProd.size());
 
 			        ObjectMapper mapper = new ObjectMapper();
 			        String json = mapper.writeValueAsString(dadosJsonProd);
-			        System.out.println("JSON enviado: " + json);
 			        
-			        response.setContentType("application/json");
-			        response.setCharacterEncoding("UTF-8");
-			        response.getWriter().write(json);
-			    } catch (Exception e) {
-			        e.printStackTrace();
-			        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			        response.getWriter().write("{\"error\":\"Erro ao processar a requisição\"}");
-			    }
+			        response.getWriter().write(json);			   
 			}
 
 
@@ -88,8 +77,6 @@ public class ServletProdutoController extends ServletGenericUtil {
 			    request.getRequestDispatcher("principal/produto.jsp").forward(request, response);
 			}
 			// Fim Modal
-
-
 
 			
 			//listar todos produtos cadastrados no DB - Tela Cadastro de Produtos - "LIST<>"

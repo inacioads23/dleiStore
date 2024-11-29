@@ -4,7 +4,10 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+<meta charset="ISO-8859-1">
 <jsp:include page="head.jsp"></jsp:include>
+</head>
 <body>
 	<!-- Pre-loader start -->
 	<jsp:include page="theme-loader.jsp"></jsp:include>

@@ -112,19 +112,17 @@ public class DAOUsuarioRepository {
 			}
 		}
 
-		// ApÛs salvar j· retorna a consulta - Adicionado na Aula 2.34
+		// ApÛs salvar j· retorna a consulta
 		return this.consultaUsuario(objeto.getLogin(), userLogado);
 	}
-
-	//paginaÁ„o - implantaÁ„o futura	
-
+	
 	// Relatorio com data
 	public List<ModelLogin> consultaUsuarioList(Long userLogado) throws SQLException {
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		// Query n„o lista o Admin.
 		sql = "SELECT * FROM model_login WHERE useradmin IS false AND user_id = " + userLogado;
+		
 		statement = connection.prepareStatement(sql);
-
 		resultSet = statement.executeQuery();
 
 		while (resultSet.next()) {// Se tem resultado
@@ -178,8 +176,10 @@ public class DAOUsuarioRepository {
 	public List<ModelLogin> consultaUsuarioList(String nome, Long userLogado) throws SQLException {
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		// Consulta digitando apenas parte dos dados (nome)
-		// Query n„o lista o Admin. [limit 5] se quiser limite de 5 linhas
-		sql = "SELECT * FROM model_login WHERE UPPER(nome) LIKE UPPER(?) AND useradmin IS false AND user_id = ?";
+		// Query n„o lista o Admin.
+		sql = "SELECT * FROM model_login WHERE TRANSLATE(UPPER(nome), '¡…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’«', 'AEIOUAEIOUAEIOUAOC') "
+				+ "LIKE TRANSLATE(UPPER(?), '¡…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’«', 'AEIOUAEIOUAEIOUAOC') AND useradmin IS false AND user_id = ?";
+
 		
 		statement = connection.prepareStatement(sql);
 		statement.setString(1, "%" + nome + "%");
@@ -269,7 +269,6 @@ public class DAOUsuarioRepository {
 		return modelLogin;
 	}
 
-	// Na consulta preciso retornar um objeto - Aula 2.34
 	// Consulta por login
 	// Query n„o lista o Admin
 	public ModelLogin consultaUsuario(String login, Long userLogado) throws SQLException {

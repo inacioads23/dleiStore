@@ -6,7 +6,10 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+<meta charset="ISO-8859-1">
 <jsp:include page="head.jsp"></jsp:include>
+</head>
 <body>
 	<!-- Pre-loader start -->
 	<jsp:include page="theme-loader.jsp"></jsp:include>
@@ -255,14 +258,7 @@
 													class="btn btn-success waves-effect waves-light">Salvar</button>												
 												<button type="button"
 													class="btn btn-danger waves-effect waves-light"
-													onclick="criarDelete();">Excluir</button>												
-												<!-- Button trigger modal 
-												<button type="button"
-													class="btn btn-secondary waves-effect waves-light"
-													data-toggle="modal" data-target="#exampleModalUsusario">
-													Consultar
-												</button>
-												-->											
+													onclick="criarDelete();">Excluir</button>																						
 											</div>											
 										</form>
 										<div class="form-cad-user-msg">

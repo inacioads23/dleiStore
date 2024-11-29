@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css"
@@ -21,8 +21,6 @@
 <title>DLEI Store - O Home da Construção</title>
 
 </head>
-
-
 <body>
 	<jsp:include page="navbar-home.jsp"></jsp:include>
 	<div class="container div-container">
@@ -37,7 +35,7 @@
 					<div class="card-body cards-home">
 					<h4 class="card-title">Alvenaria</h4>
 						<div class="">
-							<img class="cards-image" src="<%=request.getContextPath()%>/image/produto-alvenaria_200X200.jpg"
+							<img class="img-responsive cards-image" src="<%=request.getContextPath()%>/image/produto-alvenaria_200X200.jpg"
 								alt="Saco de cimento">
 						</div>						
 						<a href="<%=request.getContextPath()%>/orcamento.jsp"
@@ -47,11 +45,11 @@
 				</div>
 			</div>
 			<div class="col-sm-3">
-				<div class="card">
+				<div class="card">	
 					<div class="card-body cards-home">
 					<h4 class="card-title">Acabamento</h4>
 						<div class="">
-							<img class="cards-image" src="<%=request.getContextPath()%>/image/produto-acabamento_200X200.jpg"
+							<img class="img-responsive cards-image" src="<%=request.getContextPath()%>/image/produto-acabamento_200X200.jpg"
 								alt="Saco de cimento">
 						</div>						
 						<a href="<%=request.getContextPath()%>/orcamento.jsp"
@@ -65,7 +63,7 @@
 					<div class="card-body cards-home">
 					<h4 class="card-title">Hidráulica</h4>
 						<div class="">
-							<img class="cards-image" src="<%=request.getContextPath()%>/image/produto-hidraulica_200X200.jpg"
+							<img class="img-responsive cards-image" src="<%=request.getContextPath()%>/image/produto-hidraulica_200X200.jpg"
 								alt="Saco de cimento">
 						</div>						
 						<a href="<%=request.getContextPath()%>/orcamento.jsp"
@@ -77,7 +75,7 @@
 			<div class="col-sm-3">
 				<div class="card">
 					<div class="card-body cards-home">
-					<h4 class="card-title">Elétrica</h4>
+					<h4 class="img-responsive card-title">Elétrica</h4>
 						<div class="">
 							<img class="cards-image" src="<%=request.getContextPath()%>/image/produto-eletrico_200X200.jpg"
 								alt="Saco de cimento">
