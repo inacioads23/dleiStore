@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este sistema foi desenvolvido para gerenciar o cadastro de usuários e produtos, além de controlar a solicitação de orçamentos solicitados.
+Este sistema foi desenvolvido para gerenciar o cadastro de usuários e produtos, além de controlar a solicitação de orçamentos.
 
 ---
 
