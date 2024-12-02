@@ -12,7 +12,7 @@ Este sistema foi desenvolvido para gerenciar o cadastro de usuários e produtos,
 A tela inicial permite ao usuario ir para orçamento ou area exclusiva, além de dar as opçoes
 para solicitar orçamento de alvenaria, acabamento, hidráulica ou elétrica.
 
-![Tela inicial](loja/Imagens/telas_high_fidelity(alta_fidelidade)/1Tela-inicial.jpg)
+![Tela inicial](imagens-readme/1Tela-inicial.jpg)
 
 ---
 
@@ -24,7 +24,7 @@ A tela de orçamento pede ao usuário dados para orçamento de produto como:
 - **Telefone**
 - **Orçamento**
 
-![Tela de Orçamento](loja/Imagens/telas_high_fidelity(alta_fidelidade)/2Tela-de-orcamento.jpg)
+![Tela de Orçamento](imagens-readme/2Tela-de-orcamento.jpg)
 
 ---
 
@@ -34,7 +34,7 @@ A tela de login permite que o usuário se autentique no sistema com:
 - **Nome de usuário**
 - **Senha**
 
-![Tela de Login](loja/Imagens/telas_high_fidelity(alta_fidelidade)/3Tela-de-login.jpg)
+![Tela de Login](imagens-readme/3Tela-de-login.jpg)
 
 ---
 
@@ -43,7 +43,7 @@ A tela de login permite que o usuário se autentique no sistema com:
 A administrativa permite que o administrador edite dados de cadastro (usuário e produto), consulta (usuário e produto), 
 relatório (usuário e produto) e orçamentos.
 
-![Tela da area administrativa](loja/Imagens/telas_high_fidelity(alta_fidelidade)/4Tela-da-area-administrativa.jpg)
+![Tela da area administrativa](imagens-readme/4Tela-da-area-administrativa.jpg)
 
 ---
 
@@ -67,7 +67,7 @@ A tela de cadastro de usuário permite inserção de novos usuários no sistema 
 - **CPF**
 - **Telefone**
 
-![Tela de cadastro usuário](loja/Imagens/telas_high_fidelity(alta_fidelidade)/5Tela-de-cadastro-de-usuario.jpg)
+![Tela de cadastro usuário](imagens-readme/5Tela-de-cadastro-de-usuario.jpg)
 
 ---
 
@@ -81,7 +81,7 @@ A tela de cadastro de produtos serve para cadastrar novos produtos no sistema pe
 - **ICMS** 
 - **Valor da venda**
 
-![Tela de cadastro de produtos](loja/Imagens/telas_high_fidelity(alta_fidelidade)/6Tela-de-cadastro-de-produto.jpg)
+![Tela de cadastro de produtos](imagens-readme/6Tela-de-cadastro-de-produto.jpg)
 
 ---
 
@@ -90,7 +90,7 @@ A tela de cadastro de produtos serve para cadastrar novos produtos no sistema pe
 Esta funcionalidade permite que administradores consultem usúarios cadastrados no sistema através de:
 - **Busca por nome** se existir no sistema aparece o ID, nome completo e a opção para editar
 
-![Tela de consulta de usuário]Imagens/7Tela-de-consulta-de-usuario.jpg)
+![Tela de consulta de usuário](imagens-readme/7Tela-de-consulta-de-usuario.jpg)
 
 ---
 
@@ -99,7 +99,7 @@ Esta funcionalidade permite que administradores consultem usúarios cadastrados 
 Esta funcionalidade permite que administradores consultem produtos cadastrados no sistema através de:
 - **Busca por produto** se o produto existir no sistema aparece o ID, nome do  produto e ação.
 
-![Tela de consulta de produto](loja/Imagens/telas_high_fidelity(alta_fidelidade)/8Tela-de-consulta-de-produto.jpg)
+![Tela de consulta de produto](imagens-readme/8Tela-de-consulta-de-produto.jpg)
 
 ---
 
@@ -107,7 +107,7 @@ Esta funcionalidade permite que administradores consultem produtos cadastrados n
 
 Essa tela mostra todos os usuários cadastrados no sistema mostrando dados como  nome, E-mail, CEP, Rua, bairro e cidade.
 
-![Tela de relatório de usuário](loja/Imagens/telas_high_fidelity(alta_fidelidade)/9Tela-de-relatorio-de-usuario.jpg)
+![Tela de relatório de usuário](imagens-readme/9Tela-de-relatorio-de-usuario.jpg)
 
 ---
 
@@ -115,7 +115,7 @@ Essa tela mostra todos os usuários cadastrados no sistema mostrando dados como 
 
 Essa tela mostra todos os produtos cadastrados no sistema mostrando dados como ID, produto, categoria, tipo, vl  da compra, ICMS e valor de venda.
 
-![Tela de relatório de produto](loja/Imagens/telas_high_fidelity(alta_fidelidade)/10Tela-de-relatorio-de-produto.jpg)
+![Tela de relatório de produto](imagens-readme/10Tela-de-relatorio-de-produto.jpg)
 
 ---
 
@@ -123,6 +123,6 @@ Essa tela mostra todos os produtos cadastrados no sistema mostrando dados como I
 
 Essa tela mostra todos os orçamentos cadastrados no sistema mostrando dados como ID, produto, E-mail, telefone e orçamento. 
 
-![Tela de orçamento solicitado](loja/Imagens/telas_high_fidelity(alta_fidelidade)/11Tela-de-orcamentos-solicitados.jpg)
+![Tela de orçamento solicitado](imagens-readme/11Tela-de-orcamentos-solicitados.jpg)
 
 ---
